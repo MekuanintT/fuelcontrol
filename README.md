@@ -64,9 +64,9 @@ Edit `.env` with your database credentials:
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
-DB_PASS=yourpassword
+DB_PASS=Mekuanint@12
 DB_NAME=fuel_system
-JWT_SECRET=your_secret_key
+JWT_SECRET=Mekuanint@12
 PORT=5000
 ```
 
