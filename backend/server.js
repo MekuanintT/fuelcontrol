@@ -17,7 +17,7 @@ app.use('/api/auth',     require('./routes/auth'));
 app.use('/api/vehicles', require('./routes/vehicles'));
 app.use('/api/fuel',     require('./routes/fuel'));
 app.use('/api/reports',  require('./routes/reports'));
-app.use('/api/setup', require('./routes/setup'));
+
 
 // ─── Start ────────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
