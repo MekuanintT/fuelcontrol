@@ -16,80 +16,91 @@ export default function LandingPage({ isLoggedIn, setView }) {
   ];
 
   return (
-    <div style={{ paddingTop: 32 }}>
-      {/* Hero */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'center', marginBottom: 96 }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+    <div style={{ paddingTop: 40 }}>
+
+      {/* ── Hero ── */}
+      <div className="landing-hero">
+
+        {/* Left: copy */}
+        <div className="hero-copy" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           {/* Badge */}
-          <div style={{ display: 'inline-flex', width: 'fit-content', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 999, background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.2)' }}>
+          <div className="hero-badge" style={{ display: 'inline-flex', width: 'fit-content', alignItems: 'center', gap: 8, padding: '6px 14px', borderRadius: 999, background: 'rgba(139,92,246,0.08)', border: '1px solid rgba(139,92,246,0.2)' }}>
             <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#a78bfa', display: 'inline-block', animation: 'pulseRing 2s ease-in-out infinite' }} />
             <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#a78bfa' }}>Version 2026.1 Release</span>
           </div>
 
           {/* Heading */}
-          <h1 style={{ margin: 0, fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: 1.05, fontFamily: 'Plus Jakarta Sans, sans-serif', fontWeight: 800, letterSpacing: '-0.03em', color: '#f4f4f5' }}>
+          <h1 style={{ margin: 0, fontSize: 'clamp(2rem, 5vw, 3.75rem)', lineHeight: 1.05, fontFamily: 'Plus Jakarta Sans, sans-serif', fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--text-1)' }}>
             Smart Fleet<br />
-            <span style={{ background: 'linear-gradient(135deg, #a78bfa 0%, #7c3aed 40%, #60a5fa 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            <span style={{ background: 'linear-gradient(135deg, #a78bfa 0%, #7c3aed 40%, #60a5fa 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
               Fuel Automation
             </span>
           </h1>
 
-          <p style={{ margin: 0, color: '#71717a', fontSize: '1.125rem', lineHeight: 1.7, maxWidth: 480 }}>
+          <p style={{ margin: 0, color: 'var(--text-3)', fontSize: 'clamp(0.9375rem, 2vw, 1.125rem)', lineHeight: 1.7, maxWidth: 480 }}>
             Optimize your fleet's runtime efficiency. Log fuel consumption, track custom limits, and safeguard resources with an AI-guided control center.
           </p>
 
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <button onClick={() => setView(isLoggedIn ? 'dashboard' : 'login')} className="btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: '0.9375rem', padding: '12px 28px' }}>
+          <div className="hero-btns" style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <button
+              onClick={() => setView(isLoggedIn ? 'dashboard' : 'login')}
+              className="btn-primary"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: '0.9375rem', padding: '12px 28px' }}
+            >
               {isLoggedIn ? 'Go to Dashboard' : 'Get Started'}
               <ArrowRight size={16} />
             </button>
             {isLoggedIn && (
-              <button onClick={() => setView('dashboard')} className="btn-ghost" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: '0.9375rem', padding: '12px 24px' }}>
-                View Control Center
+              <button
+                onClick={() => setView('fuel')}
+                className="btn-ghost"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: '0.9375rem', padding: '12px 24px' }}
+              >
+                View Fuel Records
               </button>
             )}
           </div>
         </div>
 
-        {/* Status card */}
-        <div className="card-glass" style={{ padding: 32 }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 24, paddingBottom: 20, borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+        {/* Right: status card */}
+        <div className="card-glass" style={{ padding: 28 }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20, paddingBottom: 18, borderBottom: '1px solid var(--border-1)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-              <div style={{ width: 36, height: 36, borderRadius: 10, background: 'rgba(139,92,246,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Activity size={18} color="#a78bfa" />
+              <div style={{ width: 34, height: 34, borderRadius: 10, background: 'rgba(139,92,246,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <Activity size={17} color="#a78bfa" />
               </div>
-              <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontWeight: 700, fontSize: '0.9375rem', color: '#f4f4f5' }}>System Status</span>
+              <span style={{ fontFamily: 'Plus Jakarta Sans, sans-serif', fontWeight: 700, fontSize: '0.9375rem', color: 'var(--text-1)' }}>System Status</span>
             </div>
             <span className="badge badge-active">
               <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'currentColor', display: 'inline-block', animation: 'pulseRing 2s infinite' }} />
               Live
             </span>
           </div>
-          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
             {checks.map(c => (
               <li key={c} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                 <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'rgba(52,211,153,0.12)', border: '1px solid rgba(52,211,153,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
                   <Check size={11} color="#34d399" strokeWidth={3} />
                 </div>
-                <span style={{ fontSize: '0.875rem', color: '#a1a1aa', lineHeight: 1.5 }}>{c}</span>
+                <span style={{ fontSize: '0.875rem', color: 'var(--text-2)', lineHeight: 1.5 }}>{c}</span>
               </li>
             ))}
           </ul>
         </div>
       </div>
 
-      {/* Feature cards */}
-      <div>
+      {/* ── Feature cards ── */}
+      <div style={{ marginTop: 64 }}>
         <p className="section-label" style={{ marginBottom: 20 }}>AI-Native Features</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+        <div className="features-grid">
           {features.map(({ icon: Icon, color, bg, border, title, desc }) => (
-            <div key={title} className="card-glass" style={{ padding: 28, display: 'flex', flexDirection: 'column', gap: 16 }}>
-              <div style={{ width: 44, height: 44, borderRadius: 12, background: bg, border: `1px solid ${border}`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div key={title} className="card-glass" style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: bg, border: `1px solid ${border}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                 <Icon size={20} color={color} />
               </div>
               <div>
-                <h4 style={{ margin: '0 0 8px', fontFamily: 'Plus Jakarta Sans, sans-serif', fontWeight: 700, fontSize: '1rem', color: '#f4f4f5' }}>{title}</h4>
-                <p style={{ margin: 0, fontSize: '0.875rem', color: '#71717a', lineHeight: 1.6 }}>{desc}</p>
+                <h4 style={{ margin: '0 0 8px', fontFamily: 'Plus Jakarta Sans, sans-serif', fontWeight: 700, fontSize: '1rem', color: 'var(--text-1)' }}>{title}</h4>
+                <p style={{ margin: 0, fontSize: '0.875rem', color: 'var(--text-3)', lineHeight: 1.6 }}>{desc}</p>
               </div>
             </div>
           ))}

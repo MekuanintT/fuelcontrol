@@ -202,6 +202,8 @@
     box-sizing: border-box;
     border-color: hsl(var(--border));
     outline-color: hsl(var(--ring) / 0.5);
+    margin: 0;
+    padding: 0;
   }
 
   html {
@@ -252,6 +254,10 @@
   border-bottom: 1px solid var(--navbar-border);
   box-shadow: 0 1px 0 0 rgba(139,92,246,0.08);
   transition: background 0.2s ease, border-color 0.2s ease;
+  margin: 0;
+  width: 100%;
+  left: 0;
+  right: 0;
 }
 
 /* ── Surface Cards ─────────────────────────────────────── */
@@ -636,4 +642,151 @@
 /* ── Select overrides ──────────────────────────────────── */
 [data-radix-select-viewport] {
   background: var(--surface-2) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE LAYOUT
+══════════════════════════════════════════════════════════ */
+
+/* ── Desktop nav / Mobile nav visibility ── */
+.desktop-nav      { display: flex !important; }
+.mobile-nav-right { display: none !important; }
+.mobile-menu-drawer { display: flex !important; }
+
+/* ── Grid layouts ── */
+
+/* Metrics: 3 col default */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* Dashboard main: chart+table left, sidebar right */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 16px;
+  align-items: start;
+}
+
+/* Fuel page: form left, table right */
+.fuel-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* ── Tablet (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr 280px;
+  }
+  .fuel-grid {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+/* ── Small tablet / large mobile (≤ 768px) ── */
+@media (max-width: 768px) {
+  /* Swap navbar controls */
+  .desktop-nav      { display: none !important; }
+  .mobile-nav-right { display: flex !important; }
+
+  /* Stack all grids to single column */
+  .metrics-grid   { grid-template-columns: 1fr 1fr; }
+  .dashboard-grid { grid-template-columns: 1fr; }
+  .fuel-grid      { grid-template-columns: 1fr; }
+
+  /* Tighter page padding */
+  .navbar { padding: 0 12px !important; }
+
+  /* AI drawer full width on small screens */
+  .ai-backdrop { display: block !important; }
+}
+
+/* ── Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+  .metrics-grid { grid-template-columns: 1fr; }
+
+  /* Make AI drawer fill full screen on very small devices */
+  div[style*="maxWidth: 420"] {
+    max-width: 100% !important;
+  }
+
+  /* Card padding reduction */
+  .card-glass  { border-radius: 16px !important; }
+  .card-metric { border-radius: 12px !important; }
+
+  /* Table font size */
+  .tbl tbody td { padding: 10px 10px !important; font-size: 0.8125rem !important; }
+  .tbl thead th { padding: 8px 10px !important; }
+
+  /* Login card full width */
+  .card-glass[style*="maxWidth: 440"] { padding: 24px !important; }
+}
+
+/* ── Extra small (≤ 360px) ── */
+@media (max-width: 360px) {
+  .plate-chip { font-size: 10px !important; padding: 3px 7px !important; }
+  .badge      { font-size: 9px !important;  padding: 2px 7px !important; }
+}
+
+/* ── Landing page grids ── */
+.landing-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+  .landing-hero {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    margin-bottom: 48px;
+  }
+  .features-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+  .landing-hero { gap: 28px; margin-bottom: 40px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .login-card { border-radius: 16px !important; }
+}
+
+/* ── Hero copy centering on mobile ── */
+@media (max-width: 900px) {
+  .hero-copy {
+    align-items: center;
+    text-align: center;
+  }
+  .hero-copy p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-badge {
+    align-self: center;
+  }
+  .hero-btns {
+    justify-content: center;
+  }
+}
+
+/* ── Page content top spacing per view ── */
+.page-content-inner {
+  padding-top: 32px;
 }
