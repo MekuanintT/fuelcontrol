@@ -9,7 +9,7 @@ import AICopilotDrawer from './components/AICopilotDrawer';
 import { ThemeProvider, useTheme } from './lib/ThemeContext';
 import ThemeToggle from './components/ThemeToggle';
 
-const API_BASE = "http://localhost:5000/api";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:5000/api";
 
 function AppInner() {
   const { theme } = useTheme();
